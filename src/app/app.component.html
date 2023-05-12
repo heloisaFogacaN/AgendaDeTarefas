@@ -21,12 +21,14 @@
       <div class="coluna">
         <div *ngFor="let categorias of listaCategorias">
           <h3>{{categorias}}</h3>
-         <h3>TO-DO</h3>
-          <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice;let categorias of listaCategorias"
+          <div *ngFor="let usuario of listaTarefas;
+                       let tarefa of tarefas; 
+                       index as indice;
+                       let categorias of listaCategorias"
             (change)="atualizarCategoria(usuario, $event.target.value)">
-            <div *ngIf="usuario.categoria===categorias">
+            <div *ngIf="usuario.categoria==='listaCategorias'">
               <h4>
-                Tarefa: {{usuario}}
+                Tarefa: {{usuario.nome}}
                 <select [(ngModel)]="usuario.categoria">
                   <option value="todo">todo</option>
                   <option value="doing">doing</option>
@@ -43,7 +45,10 @@
     <div class="corpo">
       <div class="coluna">
         <h3>DOING</h3>
-        <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
+        <div *ngFor="let usuario of listaTarefas;
+                       let tarefa of tarefas; 
+                       index as indice;
+                       let categorias of listaCategorias"
           (change)="atualizarCategoria(usuario, $event.target.value)">
           <div *ngIf="usuario.categoria==='doing'">
             <h4>
@@ -63,7 +68,10 @@
     <div class="corpo">
       <div class="coluna">
         <h3>DONE</h3>
-        <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
+        <div *ngFor="let usuario of listaTarefas;
+                       let tarefa of tarefas; 
+                       index as indice;
+                       let categorias of listaCategorias"
           (change)="atualizarCategoria(usuario, $event.target.value)">
           <div *ngIf="usuario.categoria==='done'">
             <h4>

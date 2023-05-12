@@ -1,8 +1,6 @@
 .corpo{
     display: flex;
     flex-wrap: wrap;
-    
-
 }
 .coluna{
     height: 50%;
