@@ -17,87 +17,66 @@
 
   </div>
 
-  <div class="corpo">
-    <div class="coluna">
-      <div *ngFor="let categoria of listaCategorias">
-        <h2>{{ categoria }}</h2>
-        <table *ngIf="tarefasPorCategoria[categoria]">
-          <tr>
-            <th>Tarefa</th>
-            <th>Categoria</th>
-            <th>Opções</th>
-          </tr>
-          <tr *ngFor="let tarefa of listaTarefas[categoria]">
-            <td>{{ tarefa.nome }}</td>
-            <td>
-              <select [(ngModel)]="tarefa.categoria" (change)="mudarCategoria(tarefa)">
-                <option value="to-do">to-do</option>
+    <div class="corpo">
+      <div class="coluna">
+        <div *ngFor="let categorias of listaCategorias">
+          <h3>{{categorias}}</h3>
+         <h3>TO-DO</h3>
+          <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice;let categorias of listaCategorias"
+            (change)="atualizarCategoria(usuario, $event.target.value)">
+            <div *ngIf="usuario.categoria===categorias">
+              <h4>
+                Tarefa: {{usuario}}
+                <select [(ngModel)]="usuario.categoria">
+                  <option value="todo">todo</option>
+                  <option value="doing">doing</option>
+                  <option value="done">done</option>
+                </select>
+                <button (click)="removerTarefa(indice)">Remover tarefa</button>
+              </h4>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="corpo">
+      <div class="coluna">
+        <h3>DOING</h3>
+        <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
+          (change)="atualizarCategoria(usuario, $event.target.value)">
+          <div *ngIf="usuario.categoria==='doing'">
+            <h4>
+              Tarefa: {{usuario.nome}}
+              <select [(ngModel)]="usuario.categoria">
+                <option value="todo">to-do</option>
                 <option value="doing">doing</option>
                 <option value="done">done</option>
               </select>
-            </td>
-            <td>
-              <button (click)="removerTarefa(tarefa)">Remover tarefa</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      
-     <!-- <div *ngFor="let categorias of listaCategorias">
-      <h3>{{categorias}}</h3>
-     </div>
-     <h3>TO-DO</h3> -->
-      <!-- <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice;let categorias of listaCategorias"
-        (change)="atualizarCategoria(usuario, $event.target.value)">
-        <div *ngIf="usuario.categoria===categorias">
-          <h4>
-            Tarefa: {{usuario}}
-            <select [(ngModel)]="usuario.categoria">
-              <option value="todo">todo</option>
-              <option value="doing">doing</option>
-              <option value="done">done</option>
-            </select>
-            <button (click)="removerTarefa(indice)">Remover tarefa</button>
-          </h4>
-        </div>  -->
-      </div>
-    </div>
-
-    <!-- <div class="coluna">
-      <h3>DOING</h3>
-      <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
-        (change)="atualizarCategoria(usuario, $event.target.value)">
-        <div *ngIf="usuario.categoria==='doing'">
-          <h4>
-            Tarefa: {{usuario.nome}}
-            <select [(ngModel)]="usuario.categoria">
-              <option value="todo">to-do</option>
-              <option value="doing">doing</option>
-              <option value="done">done</option>
-            </select>
-            <button (click)="removerTarefa(indice)">Remover tarefa</button>
-          </h4>
+              <button (click)="removerTarefa(indice)">Remover tarefa</button>
+            </h4>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="coluna">
-      <h3>DONE</h3>
-      <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
-        (change)="atualizarCategoria(usuario, $event.target.value)">
-        <div *ngIf="usuario.categoria==='done'">
-          <h4>
-            Tarefa: {{usuario.nome}}
-            <select [(ngModel)]="usuario.categoria">
-              <option value="todo">to-do</option>
-              <option value="doing">doing</option>
-              <option value="done">done</option>
-            </select>
-            <button (click)="removerTarefa(indice)">Remover tarefa</button>
-          </h4>
+    <div class="corpo">
+      <div class="coluna">
+        <h3>DONE</h3>
+        <div *ngFor="let usuario of listaTarefas; let tarefa of tarefas; index as indice"
+          (change)="atualizarCategoria(usuario, $event.target.value)">
+          <div *ngIf="usuario.categoria==='done'">
+            <h4>
+              Tarefa: {{usuario.nome}}
+              <select [(ngModel)]="usuario.categoria">
+                <option value="todo">to-do</option>
+                <option value="doing">doing</option>
+                <option value="done">done</option>
+              </select>
+              <button (click)="removerTarefa(indice)">Remover tarefa</button>
+            </h4>
+          </div>
         </div>
-      </div>
-    </div> -->
-
-  </div>
+      </div>  
+    </div>
 </body>
