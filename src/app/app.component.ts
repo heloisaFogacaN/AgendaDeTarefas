@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { log } from 'console';
 
-interface Pessoa{
+
+interface Tarefa{
   nome: string
   categoria : string
 }
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,52 +14,48 @@ interface Pessoa{
 })
 export class AppComponent {
   ngOnInit() {
-    const tarefas = localStorage.getItem('Usuários');
+    const tarefas = localStorage.getItem('Tarefas');
     if (tarefas) {
-      this.usuarios = JSON.parse(tarefas);
+      this.listaTarefas = JSON.parse(tarefas);
     }
   }
   
   mostraInput: boolean = true;
-  usuarios : Pessoa[]=[]
+  listaTarefas : Tarefa[]=[];
+  listaCategorias=[]
 
   mostraBotao_Esconde: boolean = true;
   mostraBotao_Mostrar: boolean = true;
-  pessoa: Pessoa={
+  tarefa: Tarefa={
     nome:'',
     categoria: ''
   }
 
-  inputMudou(event): void {
-    console.log(event);
-  }
-  esconderInput():void{
-    this.mostraInput=false;
-  }
-  mostrarInput():void{
-    this.mostraInput=true;
-
-  }
-  cadastrarUsuario(): void{
-    const usuario: Pessoa = {
-      nome: this.pessoa.nome,
-      categoria : this.pessoa.categoria
+  cadastrarTarefa(): void{
+    const usuario: Tarefa = {
+      nome: this.tarefa.nome,
+      categoria : this.tarefa.categoria
     }
-    this.usuarios.push(usuario)
+    this.listaTarefas.push(usuario)
     this.salvarLocalStorage()
-    this.pessoa.nome=''
-    
+    this.tarefa.nome=''
+    this.tarefa.categoria=''
   }
-  removerUsuario(indice: number){
-    this.usuarios.splice(indice, 1);
+  cadastrarCategoria(): void{
+    this.listaCategorias.push(this.tarefa.categoria);
+  
+    console.log(this.listaCategorias)
+  }
+  removerTarefa(indice: number){
+    this.listaTarefas.splice(indice, 1);
     this.salvarLocalStorage()
 
   }
   salvarLocalStorage(){
-    localStorage.setItem('Usuários', JSON.stringify(this.usuarios));
+    localStorage.setItem('Tarefas', JSON.stringify(this.listaTarefas));
   }
 
-  atualizarCategoria(usuario: Pessoa) {
+  atualizarCategoria(usuario: Tarefa) {
     this.salvarLocalStorage();
   }
   
