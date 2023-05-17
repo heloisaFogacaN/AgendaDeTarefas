@@ -1,13 +1,23 @@
-<select>
-  <option *ngFor="let categoria of categorias " [value]="categoria">{{categoria}}</option>
+<select [(ngModel)]="tarefa.categoria">
+  <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
 </select>
-<input placeholder="nome" [(ngModel)]=tarefa.nome />
+<input placeholder="nome" [(ngModel)]="tarefa.nome" />
 <button (click)="cadastrarTarefa()">Cadastrar</button>
-<div class="tudo">
+
+
+<div class="corpo">
   <div *ngFor="let categoria of categorias">
     <div class="coluna">
       <h2>{{ categoria }}</h2>
-      <div *ngFor="let tarefa of listas">
+      <div *ngFor="let tarefa of listas;index as indice" (change)="atualizarCategoria(usuario, $event.target.value)">
         <div *ngIf="tarefa.categoria === categoria">
           <p>Tarefa: {{ tarefa.nome }}</p>
+          <select [(ngModel)]="tarefa.categoria">
+            <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+          </select>
+          <button (click)="removerTarefa(indice)">Remover tarefa</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+/* .corpo{
+    display: flex;
+    flex-wrap: wrap;
+}
+.coluna{
+    height: 50%;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    margin: 10px;
+} */
+
+.corpo {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .coluna {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 5px;
+  }
+  

@@ -21,7 +21,7 @@ export class TarefaComponent implements OnInit {
       this.listas = JSON.parse(tarefas);
       this.listas.forEach(usuario => {
         usuario.categoria = usuario.categoria || 'to-do'; 
-        this.salvar()
+        this.salvarLocalStorage()
       });
     }
     const categoriasAdd= localStorage.getItem("categorias")
@@ -29,7 +29,6 @@ export class TarefaComponent implements OnInit {
       this.categorias= JSON.parse(categoriasAdd)
     }
   }
-  title = 'todo-app';
   mostraInput: boolean=true;
   listas: Tarefa[]=[];
     tarefa: Tarefa ={
@@ -44,18 +43,21 @@ export class TarefaComponent implements OnInit {
 
       
       this.listas.push(usuario);
-      this.salvar();
+      this.salvarLocalStorage();
       this.tarefa.nome=''
       console.log(this.listas);
     }
-    remover(indice:number){
-      console.log(indice)
-      this.listas.splice(indice,1);
-      this.salvar()
+    removerTarefa(indice: number){
+      this.listas.splice(indice, 1);
+      this.salvarLocalStorage()
+  
     }
-    salvar(){
+    atualizarCategoria(usuario: Tarefa) {
+      this.salvarLocalStorage();
+    }
+
+    salvarLocalStorage(){
       localStorage.setItem('tarefas',JSON.stringify(this.listas));
     }
-  
-
+    
 }
