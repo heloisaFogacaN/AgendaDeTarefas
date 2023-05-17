@@ -3,18 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { TarefasComponent } from './tarefas/tarefas.component';
-import { CategoriasComponent } from './categorias/categorias.component';
+import { TarefaComponent } from 'src/app/tarefas/tarefas.component';
+import { CategoriasComponent } from 'src/app/categorias/categorias.component';
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TarefasComponent,
+    TarefaComponent,
     CategoriasComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule
+    BrowserModule, 
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
