@@ -23,10 +23,18 @@ export class CategoriasComponent implements OnInit {
     console.log(this.novaCategoria)
     this.categorias.push(this.novaCategoria);
     console.log(this.categorias)  
-    localStorage.setItem("categorias",JSON.stringify(this.categorias))
+    this.salvarLocalStorage()
     this.novaCategoria='';
     
 
+  }
+  removerCategoria(indice: number){
+    this.categorias.splice(indice, 1);
+    this.salvarLocalStorage()
+
+  }
+  salvarLocalStorage(){
+    localStorage.setItem("categorias",JSON.stringify(this.categorias))
   }
   
 
