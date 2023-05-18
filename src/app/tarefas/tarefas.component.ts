@@ -52,7 +52,7 @@ export class TarefaComponent implements OnInit {
       this.salvarLocalStorage()
   
     }
-    atualizarCategoria(usuario: Tarefa) {
+    atualizarCategoria(tarefa: Tarefa) {
       this.salvarLocalStorage();
     }
 

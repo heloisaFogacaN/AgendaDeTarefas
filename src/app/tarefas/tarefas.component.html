@@ -9,7 +9,7 @@
   <div *ngFor="let categoria of categorias">
     <div class="coluna">
       <h2>{{ categoria }}</h2>
-      <div *ngFor="let tarefa of listas;index as indice" (change)="atualizarCategoria(usuario, $event.target.value)">
+      <div *ngFor="let tarefa of listas;index as indice" (change)="atualizarCategoria(tarefa, $event.target.value)">
         <div *ngIf="tarefa.categoria === categoria">
           <p>Tarefa: {{ tarefa.nome }}</p>
           <select [(ngModel)]="tarefa.categoria">
