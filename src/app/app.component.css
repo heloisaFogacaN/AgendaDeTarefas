@@ -1,0 +1,48 @@
+* {
+    font-family: 'Courier New', monospace;
+    color: black;
+}
+nav {
+    position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+      padding: 0 20px;
+    }
+
+.corFundo {
+    background-color: rgb(127, 204, 255);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: rgb(189, 229, 255);
+    color: #000000f8;
+    font-size: 16px;
+    margin-left: auto;
+    border-radius: 5px;
+    border-color: aliceblue;
+    color: black;
+}
+
+
+.alinha {
+    font-family: "Chancery", cursive;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+
+}
+.botaoEsquerda {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .botaoDireita {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
