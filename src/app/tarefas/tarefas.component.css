@@ -1,56 +1,47 @@
-.corpo {
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+.corpo{
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
 }
-
-.coluna {
+.coluna{
     height: 100%;
     border: 1px solid black;
     margin-bottom: 10px;
     margin: 15px;
     background-color: rgb(205, 241, 255);
-    border-color: rgb(205, 241, 255);
+    border-color: rgb(205, 241, 255);;
     border-radius: 10px;
     font-family: 'Courier New', monospace;
     font-size: large;
     font-weight: bold;
 }
-
-.arredonda {
+.arredonda{
     border-radius: 10px;
 }
-
-.fundo {
+.fundo{
     background-color: rgb(127, 204, 255);
     border-radius: 10px;
     padding: 10px;
 }
-
-.corDiv {
+.corDiv{
     background-color: rgb(0, 183, 255);
     margin: 60px;
     border-radius: 10px;
 }
-
-.botao {
+.botao{
     background-color: rgb(209, 237, 255);
     font-family: 'Garamond', serif;
-    border-radius: 2px;
+    border-radius: 2px;  
     border-color: azure;
 }
-
-.titulo {
+.titulo{
     text-align: center;
 }
-
-.centro {
+.centro{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-  }
-  
-  .espaco {
-    margin-right: 10px;
-  }
-  
+}
+.select {
+    width: 700px;
+}

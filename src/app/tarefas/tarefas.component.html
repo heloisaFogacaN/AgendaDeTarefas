@@ -1,11 +1,11 @@
 <div class="fundo">
   <div class="centro">
-    <input placeholder="Tarefa" [(ngModel)]="tarefa.nome" class="botao espaco"/>
+    <input placeholder="Tarefa" [(ngModel)]="tarefa.nome" class="botao "/>
     <br>
-    <select [(ngModel)]="tarefa.categoria" class="botao espaco">
+    <select [(ngModel)]="tarefa.categoria" class="botao ">
       <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
     </select>
-    <button (click)="cadastrarTarefa()" class="botao espaco">Cadastrar</button>
+    <button (click)="cadastrarTarefa()" class="botao">Cadastrar</button>
 
   </div>
 
