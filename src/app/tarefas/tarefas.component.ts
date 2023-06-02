@@ -18,8 +18,8 @@ export class TarefaComponent implements OnInit {
   ngOnInit() {
     const tarefas = localStorage.getItem('tarefas');
     if (tarefas) {
-      this.listas = JSON.parse(tarefas);
-      this.listas.forEach(usuario => {
+      this.listaTarefa = JSON.parse(tarefas);
+      this.listaTarefa.forEach(usuario => {
         usuario.categoria = usuario.categoria || 'to-do'; 
         this.salvarLocalStorage()
       });
@@ -30,7 +30,7 @@ export class TarefaComponent implements OnInit {
     }
   }
   mostraInput: boolean=true;
-  listas: Tarefa[]=[];
+  listaTarefa: Tarefa[]=[];
     tarefa: Tarefa ={
       nome: '',
       categoria: ''
@@ -42,13 +42,13 @@ export class TarefaComponent implements OnInit {
       }
 
       
-      this.listas.push(usuario);
+      this.listaTarefa.push(usuario);
       this.salvarLocalStorage();
       this.tarefa.nome=''
-      console.log(this.listas);
+      console.log(this.listaTarefa);
     }
     removerTarefa(indice: number){
-      this.listas.splice(indice, 1);
+      this.listaTarefa.splice(indice, 1);
       this.salvarLocalStorage()
   
     }
@@ -57,7 +57,16 @@ export class TarefaComponent implements OnInit {
     }
 
     salvarLocalStorage(){
-      localStorage.setItem('tarefas',JSON.stringify(this.listas));
+      localStorage.setItem('tarefas',JSON.stringify(this.listaTarefa));
+    }
+
+    atualizarCat(categoria: String){
+      localStorage.setItem('drop',JSON.stringify(categoria));
+    }
+
+    atualizarDrop(tarefa: Tarefa){
+      tarefa.categoria= JSON.parse(localStorage.getItem("drop"));
+      this.salvarLocalStorage();
     }
     
 }
