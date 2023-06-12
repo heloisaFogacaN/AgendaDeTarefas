@@ -15,7 +15,7 @@
         <div class="coluna" (dragover)="atualizarCat(categoria)">
           <h2 class="titulo">{{ categoria }}</h2>
           <div *ngFor="let tarefa of listaTarefa ; index as indice" (change)="atualizarCategoria(tarefa, $event.target.value)">
-            <div *ngIf="tarefa.categoria === categoria" draggable="true" (dragend)="atualizarDrop(tarefa)">
+            <div *ngIf="tarefa.categoria === categoria" draggable="true" (dragend)="atualizarTarefa(tarefa)" (dragover)="posicao(tarefa)">
               <p>Tarefa: {{ tarefa.nome }}</p>
               <div class="titulo">
                 <select [(ngModel)]="tarefa.categoria" class="botao espaco">

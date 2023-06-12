@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 interface Tarefa{
   nome:string
   categoria: string
@@ -11,11 +12,17 @@ interface Tarefa{
   styleUrls: ['./tarefas.component.css']
 })
 export class TarefaComponent implements OnInit {
-  categorias : String[]=[]
+  categorias : String[]=[];
+
+   trocarAPosicao : number;
 
   constructor() { }
 
   ngOnInit() {
+    const categorias = localStorage.getItem('categorias');
+  if (categorias) {
+    this.categorias = JSON.parse(categorias);
+  }
     const tarefas = localStorage.getItem('tarefas');
     if (tarefas) {
       this.listaTarefa = JSON.parse(tarefas);
@@ -59,14 +66,27 @@ export class TarefaComponent implements OnInit {
     salvarLocalStorage(){
       localStorage.setItem('tarefas',JSON.stringify(this.listaTarefa));
     }
-
-    atualizarCat(categoria: String){
-      localStorage.setItem('drop',JSON.stringify(categoria));
+ 
+    atualizarTarefa (tarefa : Tarefa){
+      let indice = this.listaTarefa.indexOf(tarefa)
+      let removido = this.listaTarefa.splice(indice, 1)[0]
+      this.listaTarefa.splice(this.trocarAPosicao, 0, removido)
+      tarefa.categoria = JSON.parse(localStorage.getItem("drop"));
+      this.salvarLocalStorage;
+      this.trocarAPosicao = null;
     }
 
-    atualizarDrop(tarefa: Tarefa){
+    posicao(tarefa : Tarefa){
+      this.trocarAPosicao = this.listaTarefa.indexOf(tarefa)
+    }
+     atualizarCat(categoria: String){
+       localStorage.setItem('drop',JSON.stringify(categoria));
+     }
+
+     atualizarDrop(tarefa: Tarefa){
       tarefa.categoria= JSON.parse(localStorage.getItem("drop"));
-      this.salvarLocalStorage();
+       this.salvarLocalStorage();
     }
+  
     
 }
