@@ -4,7 +4,6 @@
     flex-wrap: wrap;
 }
 .coluna{
-    height: 100%;
     border: 1px solid black;
     margin-bottom: 10px;
     margin: 15px;
@@ -15,6 +14,7 @@
     font-size: large;
     font-weight: bold;
 }
+
 .arredonda{
     border-radius: 10px;
 }
@@ -23,11 +23,6 @@
     border-radius: 10px;
     padding: 10px;
 }
-.corDiv{
-    background-color: rgb(0, 183, 255);
-    margin: 60px;
-    border-radius: 10px;
-}
 .botao{
     background-color: rgb(209, 237, 255);
     font-family: 'Garamond', serif;
@@ -35,7 +30,11 @@
     border-color: azure;
 }
 .titulo{
+    background-color: rgb(205, 241, 255);
     text-align: center;
+}
+.corDefundo{
+    background-color: rgb(205, 241, 255);
 }
 .centro{
     display: flex;

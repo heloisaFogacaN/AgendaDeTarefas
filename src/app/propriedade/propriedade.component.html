@@ -1,0 +1,19 @@
+<div>
+  <div>
+      <input [(ngModel)]="novaPropriedade"/>
+      <h3>Tipo:</h3>
+      <select [(ngModel)]="tipoPropriedade">
+        <option [(ngModel)]="texto">Texto</option>
+        <option [(ngModel)]="numero">Número</option>
+        <option [(ngModel)]="selecao">Seleção</option>
+      </select>
+      <button (click)="cadastrarPropriedade()" >cadastrar</button>
+  </div>
+  <h2>Propriedades cadastradas:</h2>
+  <div>
+      <div *ngFor="let propriedade of Propriedades">{{propriedade}}
+          <button (click)="removerPropriedade(indice)" >Remover</button>
+      </div>
+  </div>
+
+</div>
