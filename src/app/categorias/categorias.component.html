@@ -3,9 +3,9 @@
         <input [(ngModel)]="novaCategoria" class="botao" />
         <button (click)="cadastrarCategoria()" class="botao">cadastrar</button>
     </div>
-    <h2>Catagorias cadastradas:</h2>
+    <h2>Categorias cadastradas:</h2>
     <div class="posicao">
-        <div *ngFor="let categoria of categorias">{{categoria}}
+        <div *ngFor="let categoria of categorias;" >{{categoria}}
             <button (click)="removerCategoria(indice)" class="botao">Remover</button>
         </div>
     </div>

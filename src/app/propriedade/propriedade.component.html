@@ -1,8 +1,8 @@
 <div>
     <div>
-        <input [(ngModel)]="novaPropriedade.nome" placeholder="Propriedade"/>
+        <input [(ngModel)]="propriedade.nome" placeholder="Propriedade"/>
         <h3>Tipo:</h3>
-        <select [(ngModel)]="tipoPropriedade">
+        <select [(ngModel)]="propriedade.tipo">
           <option>Texto</option>
           <option>Número</option>
           <option>Seleção</option>
@@ -11,9 +11,11 @@
     </div>
     <h2>Propriedades cadastradas:</h2>
     <div>
-        <div *ngFor="let propriedade of propriedadeLista; let i = index">{{propriedade.nome}}
-            <button (click)="removerPropriedade(i)">Remover</button>
-        </div>
-    </div>
-  </div>
+    <div *ngFor="let propriedade of propriedades;">
+        {{propriedade.nome}} 
+        {{propriedade.tipo}}
+        <button (click)="removerPropriedade(indice)">remover</button>
+      
+      </div>
+    
   

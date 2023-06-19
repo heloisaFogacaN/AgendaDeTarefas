@@ -1,27 +1,42 @@
-<div class="fundo">
-  <div class="centro">
-    <input placeholder="Tarefa" [(ngModel)]="tarefa.nome" class="botao" />
-    <br>
-    <select [(ngModel)]="tarefa.categoria" class="botao">
-      <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
-    </select>
-    <button (click)="cadastrarTarefa()" class="botao">Cadastrar</button>
-  </div>
+<body>
+    <div class="fundo">
+      <div class="centro">
+        <input placeholder="Tarefa" [(ngModel)]="tarefa.nome" class="botao" />
+        <br>
+        <select [(ngModel)]="tarefa.categoria" class="botao">
+          <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+        </select>
+        <div *ngFor="let propriedade of propriedades">
+          <input placeholder="{{ propriedade.nome }}" [(ngModel)]="propriedade.valor" />
+        </div>
+        <button (click)="cadastrarTarefa()" class="botao">Cadastrar</button>
+      </div>
 
-  <div class="corpo">
-    <div *ngFor="let categoria of categorias" class="coluna" (dragover)="atualizarCat(categoria)">
-      <h2 class="titulo">{{ categoria }}</h2>
-      <div *ngFor="let tarefa of listaTarefa; index as indice" class="corDefundo" (change)="atualizarCategoria(tarefa, $event.target.value)">
-        <div *ngIf="tarefa.categoria === categoria" class="corDefundo" draggable="true" (dragend)="atualizarTarefa(tarefa)" (dragover)="posicao(tarefa)">
-            <p class="corDefundo">Tarefa: {{ tarefa.nome }}</p>
-          <div class="titulo">
-            <select [(ngModel)]="tarefa.categoria" class="botao espaco">
-              <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
-            </select>
-            <button (click)="removerTarefa(indice)" class="botao espaco">Remover</button>
+      <h1>Lista de Propriedades</h1>
+      <ul>
+        <li *ngFor="let propriedade of propriedades">
+          {{ propriedade.nome }} {{ propriedade.tipo }}
+        </li>
+      </ul>
+  
+    <div class="corpo">
+      <div *ngFor="let categoria of categorias" class="coluna" (dragover)="atualizarCat(categoria)">
+        <h2 class="titulo">{{ categoria }}</h2>
+        <div *ngFor="let tarefa of listaTarefa; index as indice" class="corDefundo" (change)="atualizarCategoria(tarefa, $event.target.value)">
+          <div *ngIf="tarefa.categoria === categoria" class="corDefundo" draggable="true" (dragend)="atualizarTarefa(tarefa)" (dragover)="posicao(tarefa)">
+              <p class="corDefundo">Tarefa: {{ tarefa.nome }}</p>
+              <div *ngFor="let propriedade of tarefa.propriedades">
+                <div *ngIf="propriedade.valor != null">
+                  <div *ngIf="propriedade.valor != ''">{{ propriedade.nome }}: {{ propriedade.valor }}</div>
+                  </div>
+                  </div>
+            <div class="titulo">
+              
+              <button (click)="removerTarefa(indice)" class="botao espaco">Remover</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>  
+</body>

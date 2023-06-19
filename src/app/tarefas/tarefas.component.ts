@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 interface Tarefa{
   nome:string
   categoria: string
+  propriedades?: any;
 }
 
 
@@ -35,21 +36,32 @@ export class TarefaComponent implements OnInit {
     if(categoriasAdd){
       this.categorias= JSON.parse(categoriasAdd)
     }
+    const propriedadesSalvas = localStorage.getItem('propriedade');
+
+    console.log(propriedadesSalvas)
+    if (propriedadesSalvas) {
+      this.propriedades = JSON.parse(propriedadesSalvas);
+    }
+    console.log(this.propriedades)
   }
+
+  propriedades: any []=[]
   mostraInput: boolean=true;
   listaTarefa: Tarefa[]=[];
     tarefa: Tarefa ={
       nome: '',
       categoria: ''
     }
+
     cadastrarTarefa():void{
-      const usuario: Tarefa={
+        const novaTarefa: Tarefa={
         nome:this.tarefa.nome,
-        categoria:this.tarefa.categoria
-      }
+        categoria:this.tarefa.categoria,
+        propriedades: this.tarefa.propriedades
+        }
 
       
-      this.listaTarefa.push(usuario);
+      this.listaTarefa.push(novaTarefa);
       this.salvarLocalStorage();
       this.tarefa.nome=''
       console.log(this.listaTarefa);
