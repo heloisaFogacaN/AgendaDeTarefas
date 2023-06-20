@@ -7,6 +7,7 @@ import { TarefaComponent } from 'src/app/tarefas/tarefas.component';
 import { CategoriasComponent } from 'src/app/categorias/categorias.component';
 import { PropriedadeComponent } from './propriedade/propriedade.component';
 import { AppRoutingModule } from './app-routing.module';
+import { UserRepository } from 'src/repositores/user.repository';
 
 
 
@@ -22,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserRepository],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
