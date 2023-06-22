@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/users/user';
+import { UserRepository } from 'src/repositores/user.repository';
 
-  interface Propriedade{
-  nome : string
-  tipo : string
-  dado : any
-  }
+interface Propriedade{
+  nome:string
+  tipo: string
+  valor:any
+}
+
 
 @Component({
   selector: 'app-propriedade',
@@ -12,8 +15,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./propriedade.component.css']
 })
 export class PropriedadeComponent implements OnInit {
+  categorias : String[]=[];
 
-  constructor() { }
+   trocarAPosicao : number;
+
+   private userId: string = 'henrique.santos';
+   private users: User[] = [];
+   user!: User;
+ 
+   constructor(
+    private userRepository: UserRepository
+  ) {
+    this.users = this.userRepository.getUsers();
+    this.user = this.getUsuarioLogado();
+    console.log(this.user);
+  }
 
   ngOnInit() {
     const propriedades = localStorage.getItem('propriedade');
@@ -23,34 +39,68 @@ export class PropriedadeComponent implements OnInit {
     console.log(propriedades);
   }
 
-  propriedades: Propriedade[] = [] as Propriedade[];
+  propriedades: Propriedade[]=[];
   propriedade: Propriedade ={
     nome: '',
     tipo: '',
-    dado: null
+    valor:null
   }
-
   valoresPropriedades: { [nome: string]: any } = {};
   cadastrarPropriedade():void{
     const propriedade: Propriedade={
       nome:this.propriedade.nome,
       tipo:this.propriedade.tipo,
-      dado:this.propriedade.dado
+      valor:this.propriedade.valor
     }
+
+    
     this.propriedades.push(propriedade);
-    console.log(this.propriedades)  
-    this.salvarLocalStorage()
-    this.propriedade.nome='';
-  }
+    this.salvar();
+    this.propriedade.nome=''
 
-  removerPropriedade(indice: number){
-    this.propriedades.splice(indice, 1);
-    this.salvarLocalStorage()
-
+}
+adicionarTarefa(): void {
+  if (!this.hasPermission('Add')) {
+    alert('Não pode cadastrar');
+    return;
   }
+  alert('Pode cadastrar');
+}
 
-  salvarLocalStorage(){
-    localStorage.setItem("propriedade",JSON.stringify(this.propriedades))
+editarTarefa(): void {
+  if (!this.hasPermission('Edit')) {
+    alert('Não pode cadastrar');
+    return;
   }
+  alert('Pode cadastrar');
+}
+
+removerTarefa(): void {
+  if (!this.hasPermission('Remove')) {
+    alert('Não pode cadastrar');
+    return;
+  }
+  alert('Pode cadastrar');
+}
+
+hasPermission(permission: string): boolean {
+  return this.user.cardPermissions.some((cardPermission) => {
+    return cardPermission === permission;
+  });
+}
+
+private getUsuarioLogado(): User {
+  return this.users.find((user) => {
+    return user.id === this.userId
+  }) as User;
+}
+salvar(){
+  localStorage.setItem('propriedade',JSON.stringify(this.propriedades));
+}
+remover(indice:number){
+  console.log(indice)
+  this.propriedades.splice(indice,1);
+  this.salvar()
+}
 
 }

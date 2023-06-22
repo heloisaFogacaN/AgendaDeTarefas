@@ -7,10 +7,13 @@
           <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
         </select>
         <div *ngFor="let propriedade of propriedades">
-          <input placeholder="{{ propriedade.nome }}" [(ngModel)]="propriedade.valor" />
-        </div>
-        <button (click)="cadastrarTarefa()" class="botao">Cadastrar</button>
+          <div *ngIf="propriedade.tipo=='texto'"><input placeholder="{{ propriedade.nome }}" type="text" [(ngModel)]="propriedade.valor" /></div>
+          <div *ngIf="propriedade.tipo=='numero'"><input placeholder="{{ propriedade.nome }}" type="number" [(ngModel)]="propriedade.valor" /></div>
+        <button (click)="adicionarTarefa()"
+          [disabled]="!hasPermission('Add')" (click)="cadastrarTarefa()" >Adicionar tarefa</button>
       </div>
+      </div>
+    
 
       <h1>Lista de Propriedades</h1>
       <ul>
@@ -23,20 +26,25 @@
       <div *ngFor="let categoria of categorias" class="coluna" (dragover)="atualizarCat(categoria)">
         <h2 class="titulo">{{ categoria }}</h2>
         <div *ngFor="let tarefa of listaTarefa; index as indice" class="corDefundo" (change)="atualizarCategoria(tarefa, $event.target.value)">
-          <div *ngIf="tarefa.categoria === categoria" class="corDefundo" draggable="true" (dragend)="atualizarTarefa(tarefa)" (dragover)="posicao(tarefa)">
+          <div *ngIf="tarefa.categoria === categoria" class="corDefundo" draggable="true" (dragend)="atualizarDrop(tarefa)" (dragover)="posicao(tarefa)">
               <p class="corDefundo">Tarefa: {{ tarefa.nome }}</p>
               <div *ngFor="let propriedade of tarefa.propriedades">
                 <div *ngIf="propriedade.valor != null">
-                  <div *ngIf="propriedade.valor != ''">{{ propriedade.nome }}: {{ propriedade.valor }}</div>
-                  </div>
-                  </div>
+                  <div *ngIf="propriedade.valor != ''" class="corDefundo">{{ propriedade.nome }}: {{ propriedade.valor }}</div>
+                  
+                </div>
+              </div>
+              <select [(ngModel)]="tarefa.categoria" class="botao">
+                <option [disabled]="!hasPermission('Edit')" *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+              </select>
+              </div>
             <div class="titulo">
               
-              <button (click)="removerTarefa(indice)" class="botao espaco">Remover</button>
+              <button [disabled]="!hasPermission('Remove')" (click)="tiraTarefa(indice)" class="botao espaco">Remover</button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>  
+        </div>
+        </div>
+        
 </body>

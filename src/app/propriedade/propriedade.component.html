@@ -1,21 +1,15 @@
-<div>
-    <div>
-        <input [(ngModel)]="propriedade.nome" placeholder="Propriedade"/>
-        <h3>Tipo:</h3>
-        <select [(ngModel)]="propriedade.tipo">
-          <option>Texto</option>
-          <option>Número</option>
-          <option>Seleção</option>
-        </select>
-        <button (click)="cadastrarPropriedade()">cadastrar</button>
-    </div>
-    <h2>Propriedades cadastradas:</h2>
-    <div>
-    <div *ngFor="let propriedade of propriedades;">
-        {{propriedade.nome}} 
-        {{propriedade.tipo}}
-        <button (click)="removerPropriedade(indice)">remover</button>
-      
-      </div>
-    
-  
+<h3 >nome da propriedade: </h3>
+<input placeholder="nome" [(ngModel)]="propriedade.nome">
+<h3>
+  tipo de dados:  
+  <select placeholder="tipo" [(ngModel)]="propriedade.tipo">
+  <option>texto</option>
+  <option>numero</option>
+  <option>seleção</option>
+</select> </h3>
+<div *ngFor="let propriedade of propriedades"></div>
+<button  [disabled]="!hasPermission('Add')"  (click)="cadastrarPropriedade()">Cadastrar</button>
+<div *ngFor="let propriedade of propriedades; index as indice">{{propriedade.nome}} {{propriedade.tipo}}
+  <button  [disabled]="!hasPermission('Remove')" (click)="remover(indice)" class="botaoRemover">remover tarefa</button>
+
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/users/user';
+import { UserRepository } from 'src/repositores/user.repository';
 
 interface Tarefa{
   nome:string
@@ -17,7 +19,17 @@ export class TarefaComponent implements OnInit {
 
    trocarAPosicao : number;
 
-  constructor() { }
+   private userId: string = 'diogo.defante';
+   private users: User[] = [];
+   user!: User;
+ 
+   constructor(
+    private userRepository: UserRepository
+  ) {
+    this.users = this.userRepository.getUsers();
+    this.user = this.getUsuarioLogado();
+    console.log(this.user);
+  }
 
   ngOnInit() {
     const categorias = localStorage.getItem('categorias');
@@ -42,8 +54,10 @@ export class TarefaComponent implements OnInit {
     if (propriedadesSalvas) {
       this.propriedades = JSON.parse(propriedadesSalvas);
     }
-    console.log(this.propriedades)
-  }
+     console.log(this.propriedades)
+    }
+    
+
 
   propriedades: any []=[]
   mostraInput: boolean=true;
@@ -52,12 +66,48 @@ export class TarefaComponent implements OnInit {
       nome: '',
       categoria: ''
     }
+    adicionarTarefa(): void {
+      if (!this.hasPermission('Add')) {
+        alert('Não pode cadastrar');
+        return;
+      }
+      alert('Pode cadastrar');
+    }
+  
+    editarTarefa(): void {
+      if (!this.hasPermission('Edit')) {
+        alert('Não pode editar');
+        return;
+      }
+      alert('Pode editar');
+    }
+  
+    removerTarefa(): void {
+      if (!this.hasPermission('Remove')) {
+        alert('Não pode remover');
+        return;
+      }
+      alert('Pode remover');
+    }
+  
+    hasPermission(permission: string): boolean {
+      return this.user.cardPermissions.some((cardPermission) => {
+        return cardPermission === permission;
+      });
+    }
+  
+    private getUsuarioLogado(): User {
+      return this.users.find((user) => {
+        return user.id === this.userId
+      }) as User;
+    }
 
     cadastrarTarefa():void{
+      const propriedadesCopiadas = this.propriedades.map(propriedade => ({ ...propriedade, valor: propriedade.valor }));
         const novaTarefa: Tarefa={
         nome:this.tarefa.nome,
         categoria:this.tarefa.categoria,
-        propriedades: this.tarefa.propriedades
+        propriedades: propriedadesCopiadas
         }
 
       
@@ -66,13 +116,13 @@ export class TarefaComponent implements OnInit {
       this.tarefa.nome=''
       console.log(this.listaTarefa);
     }
-    removerTarefa(indice: number){
+    atualizarCategoria(tarefa: Tarefa) {
+      this.salvarLocalStorage();
+    }
+    tiraTarefa(indice: number){
       this.listaTarefa.splice(indice, 1);
       this.salvarLocalStorage()
   
-    }
-    atualizarCategoria(tarefa: Tarefa) {
-      this.salvarLocalStorage();
     }
 
     salvarLocalStorage(){
@@ -96,9 +146,15 @@ export class TarefaComponent implements OnInit {
      }
 
      atualizarDrop(tarefa: Tarefa){
+      if (!this.hasPermission('MoveCard')) {
+        alert('Não pode mover');
+        return;
+      } else {
+      alert('Pode mover');
       tarefa.categoria= JSON.parse(localStorage.getItem("drop"));
        this.salvarLocalStorage();
+      }
     }
+
   
-    
-}
+  }

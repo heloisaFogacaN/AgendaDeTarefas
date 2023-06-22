@@ -1,6 +1,5 @@
-import { User } from "src/app/models/users/user";
-
-export const users : User[]= [
+import { User } from "src/app/models/users/user"
+export const users: User[] = [
 	{
 		"id": "joao.silva",
 		"name": "João da Silva",
@@ -8,55 +7,58 @@ export const users : User[]= [
 		"cardPermissions": [
 			"Add"
 		],
-		"propertiesPermisions": [
+		"propertiesPermissions": [
 			"Add"
 		]
 	},
-		{
-		"id": "henrique.silva",
-		"name": "João da Silva",
+	{
+		"id": "henrique.santos",
+		"name": "Henrique Santos",
 		"groups": [],
 		"cardPermissions": [
 			"Edit"
 		],
-		"propertiesPermisions": [
+		"propertiesPermissions": [
 			"Edit"
 		]
 	},
-		{
+	{
 		"id": "igor.oliveira",
-		"name": "João da Silva",
+		"name": "Igor Oliveira",
 		"groups": [],
 		"cardPermissions": [
 			"Remove"
 		],
-		"propertiesPermisions": [
+		"propertiesPermissions": [
 			"Remove"
 		]
 	},
-		{
+	{
 		"id": "igor.guimaraes",
-		"name": "Igor Guimarães",
+		"name": "Igor Guimaraes",
 		"groups": [],
 		"cardPermissions": [
 			"MoveCard"
 		],
-		"propertiesPermisions": [
+		"propertiesPermissions": [
 			"Add",
 			"Edit"
 		]
 	},
-		{
+	{
 		"id": "diogo.defante",
 		"name": "Diogo Defante",
 		"groups": [],
 		"cardPermissions": [
-			"Add"
-		],
-		"propertiesPermisions": [
 			"Add",
-            "Edit",
-            "Remove"
+			"Edit",
+			"Remove",
+			"MoveCard"
+		],
+		"propertiesPermissions": [
+			"Add",
+			"Edit",
+			"Remove"
 		]
 	}
 ]
