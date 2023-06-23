@@ -23,13 +23,15 @@ export class TarefaComponent implements OnInit {
    private users: User[] = [];
    user!: User;
  
-   constructor(
-    private userRepository: UserRepository
-  ) {
-    this.users = this.userRepository.getUsers();
-    this.user = this.getUsuarioLogado();
-    console.log(this.user);
-  }
+   constructor(private userRepository : UserRepository){
+    userRepository.getUsers().subscribe({
+      next : (value) =>{
+        console.log(value);
+      }
+    })
+
+   }
+
 
   ngOnInit() {
     const categorias = localStorage.getItem('categorias');

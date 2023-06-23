@@ -24,12 +24,8 @@ export class PropriedadeComponent implements OnInit {
    user!: User;
  
    constructor(
-    private userRepository: UserRepository
-  ) {
-    this.users = this.userRepository.getUsers();
-    this.user = this.getUsuarioLogado();
-    console.log(this.user);
-  }
+   ){}
+   
 
   ngOnInit() {
     const propriedades = localStorage.getItem('propriedade');

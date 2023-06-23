@@ -8,6 +8,8 @@ import { CategoriasComponent } from 'src/app/categorias/categorias.component';
 import { PropriedadeComponent } from './propriedade/propriedade.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserRepository } from 'src/repositores/user.repository';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 
 
 
@@ -21,9 +23,13 @@ import { UserRepository } from 'src/repositores/user.repository';
   imports: [
     BrowserModule, 
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [UserRepository],
-  bootstrap: [AppComponent]
+  providers: [
+    UserRepository,
+  AuthGuardService],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

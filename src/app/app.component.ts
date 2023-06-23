@@ -19,11 +19,9 @@ import { utf8Encode } from '@angular/compiler/src/util';
       
     }
     
-    constructor(private userRepository : UserRepository){
-      this.users = this.userRepository.getUsers();
-      this.getUsuarioLogado();
-    }
-
+   constructor(){
+    
+   }
     private hasPermission(permission : string) : boolean {
       return this.user.cardPermissions.some((permission) => {
         return permission === permission;
