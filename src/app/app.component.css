@@ -9,13 +9,13 @@ nav {
       right: 0;
       display: flex;
       box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-      padding: 0 20px;
+      padding: 0 15px;
     }
 
 
 
 button {
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: rgb(189, 229, 255);
     color: #000000f8;
     font-size: 16px;
