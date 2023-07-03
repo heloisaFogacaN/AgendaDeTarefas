@@ -60,7 +60,6 @@ export class TarefaComponent implements OnInit {
     }
     
 
-
   propriedades: any []=[]
   mostraInput: boolean=true;
   listaTarefa: Tarefa[]=[];
@@ -75,7 +74,7 @@ export class TarefaComponent implements OnInit {
       }
       alert('Pode cadastrar');
     }
-  
+ 
     editarTarefa(): void {
       if (!this.hasPermission('Edit')) {
         alert('Não pode editar');
@@ -83,7 +82,7 @@ export class TarefaComponent implements OnInit {
       }
       alert('Pode editar');
     }
-  
+ 
     removerTarefa(): void {
       if (!this.hasPermission('Remove')) {
         alert('Não pode remover');
@@ -91,12 +90,10 @@ export class TarefaComponent implements OnInit {
       }
       alert('Pode remover');
     }
-  
+ 
     hasPermission(permission: string): boolean {
-      return this.user.cardPermissions.some((cardPermission) => {
-        return cardPermission === permission;
-      });
-    }
+     return this.user.cardPermissions === permission;
+   }
   
     private getUsuarioLogado(): User {
       return this.users.find((user) => {

@@ -19,7 +19,7 @@ export class PropriedadeComponent implements OnInit {
 
    trocarAPosicao : number;
 
-   private userId: string = 'henrique.santos';
+   private userId: string = 'diogo.defante';
    private users: User[] = [];
    user!: User;
  
@@ -78,18 +78,16 @@ removerTarefa(): void {
   }
   alert('Pode cadastrar');
 }
-
 hasPermission(permission: string): boolean {
-  return this.user.cardPermissions.some((cardPermission) => {
-    return cardPermission === permission;
-  });
+  return this.user.propertiesPermissions === permission;
 }
 
-private getUsuarioLogado(): User {
-  return this.users.find((user) => {
-    return user.id === this.userId
-  }) as User;
-}
+ private getUsuarioLogado(): User {
+   return this.users.find((user) => {
+     return user.id === this.userId
+   }) as User;
+ }
+ 
 salvar(){
   localStorage.setItem('propriedade',JSON.stringify(this.propriedades));
 }

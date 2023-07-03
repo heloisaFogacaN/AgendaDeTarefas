@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/users/user';
+import { UserRepository } from 'src/repositores/user.repository';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,12 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userRepository: UserRepository) { }
 
   ngOnInit() {
   }
-  cadastrarPessoa(){
-    
-  }
+  adicionarUsuario() {
+    const novoUsuario: User = {
+      // Preencha os campos do novo usuário aqui
+      id: 'b',
+      name: 'b',
+      password: 'b',
+      email: 'b',
+      cardPermissions:'Edit',
+      propertiesPermissions:'Edit'
+    };
 
+    this.userRepository.addUser(novoUsuario).subscribe(
+      (response) => {
+        console.log('Usuário adicionado com sucesso:', response);
+        // Faça algo após adicionar o usuário
+      },
+      (error) => {
+        console.error('Erro ao adicionar usuário:', error);
+        // Trate o erro adequadamente
+      }
+    );
+  }
 }

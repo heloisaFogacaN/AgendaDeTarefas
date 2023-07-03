@@ -22,13 +22,5 @@ import { utf8Encode } from '@angular/compiler/src/util';
    constructor(){
     
    }
-    private hasPermission(permission : string) : boolean {
-      return this.user.cardPermissions.some((permission) => {
-        return permission === permission;
-      });
-    }
-    private getUsuarioLogado():User | undefined{
-      return this.users.find((user)=> {
-        return user.id===this.userId})
-      }
+   
     }
