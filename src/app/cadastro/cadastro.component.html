@@ -1,14 +1,15 @@
-<h1>CADASTRE-SE</h1>
+<h1>CADASTRO</h1>
     <div>
       <h4>E-mail</h4>
-      <input type="email" placeholder="Ex: maria_silva@dominio.com">
+      <input type="email" [(ngModel)]="cadastro.email" placeholder="Ex: maria_silva@dominio.com">
       <h4>Usuario</h4>
-      <input type="email" placeholder="Ex: maria_silva">
+      <input type="email" [(ngModel)]="cadastro.id" placeholder="Ex: maria_silva">
   
       <h4>Senha</h4>
-      <input type="password" placeholder="Senha">
+      <input type="password" [(ngModel)]="cadastro.password" placeholder="Senha">
   
       <h4>Nome Completo</h4>
-      <input type="text" placeholder="Ex: Maria da Silva">
-      <button (click)="adicionarUsuario()" >cadastrar</button>
+      <input type="text"  [(ngModel)]="cadastro.name" placeholder="Ex: Maria da Silva">
+      <br>
+      <button (click)="cadastrarPessoa()" >cadastrar</button>
     </div>

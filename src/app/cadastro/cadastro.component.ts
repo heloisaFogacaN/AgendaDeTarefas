@@ -8,18 +8,24 @@ import { UserRepository } from 'src/repositores/user.repository';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+  id: string;
+  name: string;
+  cardPermissions: string;
+  propertiesPermissions: string;
+  password:string;
+  email:string;
 
   constructor(private userRepository: UserRepository) { }
 
+
   ngOnInit() {
   }
-  adicionarUsuario() {
+  cadastrarPessoa() {
     const novoUsuario: User = {
-      // Preencha os campos do novo usuário aqui
-      id: 'b',
-      name: 'b',
-      password: 'b',
-      email: 'b',
+      id: this.cadastro.id,
+      name: '',
+      password: '',
+      email: '',
       cardPermissions:'Edit',
       propertiesPermissions:'Edit'
     };
@@ -27,11 +33,9 @@ export class CadastroComponent implements OnInit {
     this.userRepository.addUser(novoUsuario).subscribe(
       (response) => {
         console.log('Usuário adicionado com sucesso:', response);
-        // Faça algo após adicionar o usuário
       },
       (error) => {
         console.error('Erro ao adicionar usuário:', error);
-        // Trate o erro adequadamente
       }
     );
   }

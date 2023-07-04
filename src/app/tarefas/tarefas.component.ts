@@ -8,7 +8,6 @@ interface Tarefa{
   propriedades?: any;
 }
 
-
 @Component({
   selector: 'app-tarefa',
   templateUrl: './tarefas.component.html',
