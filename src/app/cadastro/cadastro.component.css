@@ -5,6 +5,7 @@
 }
 
 .botao {
+    padding: 5px;
     background-color: rgb(209, 237, 255);
     font-family: 'Garamond', serif;
     border-radius: 5px;

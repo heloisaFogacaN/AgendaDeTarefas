@@ -24,6 +24,7 @@
     padding: 10px;
 }
 .botao{
+    padding: 8px;
     background-color: rgb(209, 237, 255);
     font-family: 'Garamond', serif;
     border-radius: 2px;  
@@ -42,5 +43,5 @@
     align-items: center;
 }
 .select {
-    width: 700px;
+    width: 6500px;
 }
