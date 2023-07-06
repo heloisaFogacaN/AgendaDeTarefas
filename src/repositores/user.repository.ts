@@ -13,7 +13,6 @@ export class UserRepository {
 
     }
 
-    //${API_URL}/usuarios
     public getUsers():Observable< User[]> {
         return this.httpClient.get<User[]>(API_URL).pipe(map(values=>{
             const users: User[]=[];

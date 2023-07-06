@@ -22,12 +22,12 @@ export class CadastroComponent implements OnInit {
   }
   cadastrarPessoa() {
     const novoUsuario: User = {
-      id: this.cadastro.id,
-      name: '',
-      password: '',
-      email: '',
-      cardPermissions:'Edit',
-      propertiesPermissions:'Edit'
+      id: this.id,
+      name: this.name,
+      password: this.password,
+      email: this.email,
+      cardPermissions: 'Edit',
+      propertiesPermissions: 'Edit'
     };
 
     this.userRepository.addUser(novoUsuario).subscribe(
