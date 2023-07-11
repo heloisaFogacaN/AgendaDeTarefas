@@ -9,6 +9,9 @@ import { TarefaComponent } from './tarefas.component';
   declarations: [TarefaComponent], 
   exports: [
     TarefaComponent
+  ],
+  providers:[
+    
   ]
 })
 export class TarefaModule { }
